@@ -1,0 +1,58 @@
+[
+  {
+    "model": "parcels.status",
+    "pk": 1,
+    "fields": {
+      "name": "RECEIVED_AT_DC",
+      "description": "Received at Distribution Center"
+    }
+  },
+  {
+    "model": "parcels.status",
+    "pk": 2,
+    "fields": {
+      "name": "WAITING_FOR_APPROVAL",
+      "description": "Waiting for Approval"
+    }
+  },
+  {
+    "model": "parcels.status",
+    "pk": 3,
+    "fields": {
+      "name": "APPROVED",
+      "description": "Approved"
+    }
+  },
+  {
+    "model": "parcels.status",
+    "pk": 4,
+    "fields": {
+      "name": "DEPARTMENT_ASSIGNED",
+      "description": "Department Assigned"
+    }
+  },
+  {
+    "model": "parcels.status",
+    "pk": 5,
+    "fields": {
+      "name": "SHIPPED_TO_CUSTOMER",
+      "description": "Parcel is Shipped to Customer"
+    }
+  },
+  {
+    "model": "parcels.status",
+    "pk": 6,
+    "fields": {
+      "name": "ON_HOLD",
+      "description": "On Hold"
+    }
+  },
+  {
+    "model": "parcels.status",
+    "pk": 7,
+    "fields": {
+      "name": "COMPLETED",
+      "description": "Completed"
+    }
+  }
+]
