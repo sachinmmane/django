@@ -5,6 +5,8 @@ from .serializers import UserSerializer, GroupSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+from rest_framework import status
 
 # Create your views here.
 class CreateUserView(generics.CreateAPIView):
@@ -42,3 +44,16 @@ class UserDetailView(APIView):
         user = request.user
         serializer = UserSerializer(user)
         return Response(serializer.data)
+
+class UserActivationView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, user_id):
+        user = get_object_or_404(User, id=user_id)
+        new_status = not user.is_active
+
+        user.is_active = new_status
+        user.save()
+
+        serializer = UserSerializer(instance=user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
