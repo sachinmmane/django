@@ -165,3 +165,26 @@ class ParcelDetailView(APIView):
 
         serializer = ParcelSerializer(parcel)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class ParcelDepartmentUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, pk, format=None):
+        try:
+            parcel = Parcel.objects.get(pk=pk)
+        except Parcel.DoesNotExist:
+            return Response({"error": "Parcel not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        department_id = request.data.get('department_id')
+        if not department_id:
+            return Response({"error": "Department ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            department_instance = Department.objects.get(pk=department_id)
+        except Department.DoesNotExist:
+            return Response({"error": "Department not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        parcel.department = department_instance
+        parcel.save()
+
+        return Response({"message": "Parcel department updated successfully"}, status=status.HTTP_200_OK)

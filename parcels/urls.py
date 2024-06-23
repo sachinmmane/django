@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UploadFileView, CheckContainerView, StatusListCreate, StatusUpdate, StatusDelete, ParcelListView, ParcelStatusUpdateView, ParcelDetailView
+from .views import UploadFileView, CheckContainerView, StatusListCreate, StatusUpdate, StatusDelete, ParcelListView, ParcelStatusUpdateView, ParcelDetailView ,ParcelDepartmentUpdateView
 
 urlpatterns = [
     path('parcels/', ParcelListView.as_view(), name='parcel-list'),
@@ -10,4 +10,6 @@ urlpatterns = [
     path('status/', StatusListCreate.as_view(), name='status-list'),
     path('status/<int:pk>', StatusUpdate.as_view(), name='status-update'),
     path('status/delete/<int:pk>', StatusDelete.as_view(), name='delete-status'),
+    path('parcels/update-department/<int:pk>', ParcelDepartmentUpdateView.as_view(), name='update-parcel-department'),
+    
 ]
